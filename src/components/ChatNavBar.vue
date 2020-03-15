@@ -11,14 +11,34 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
     name: 'ChatNavBar',
     computed: {
         ...mapState([
             'user',
+            'reconnect'
         ])
     },
+    methods: {
+        ...mapMutations([
+            'setReconnect'
+        ]),
+        ...mapActions([
+            'login'
+        ]),
+        unload() {
+            if(this.user.username) { // User hasn't logged out
+                this.setReconnect(true);
+            }
+        }
+    },
+    mounted() {
+        window.addEventListener('beforeunload', this.unload);
+        if(this.reconnect) {
+            this.login(this.user.username);
+        }
+    }
 }
 </script>
 

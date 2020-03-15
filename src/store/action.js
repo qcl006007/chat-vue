@@ -48,8 +48,8 @@ export default {
 
     async changeRoom({commit}, roomId) {
       try {
-        await chatkit.subscribeToRoom(roomId);
-        commit('setActiveRoom', roomId);
+        const {id, name} = await chatkit.subscribeToRoom(roomId);
+        commit('setActiveRoom', {id, name});
       }
       catch (error) {
         handleError(commit, error);
