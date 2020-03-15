@@ -52,13 +52,13 @@ export default {
         ])
     },
     methods: {
-        ...mapActions(
-            'login'
-        ),
+        ...mapActions([
+             'login'
+        ]),
         async onSubmit () {
             let result = await this.login(this.userId);
             if (result) {
-                this.$router.push('/chat');
+                this.$router.push('chat');
             }
         }
     }
