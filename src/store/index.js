@@ -1,18 +1,21 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersistence from "vuex-persist"
+import actions from "./action"
+import mutations from "./mutation"
 
 Vue.use(Vuex);
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage
 })
 
+
 export default new Vuex.Store({
   state: {
     loading: false,
     sending: false,
     error: null,
-    user: [],
+    user: null,
     reconnect: false,
     activeRoom: null,
     rooms: [],
@@ -23,8 +26,9 @@ export default new Vuex.Store({
   getters: {
     hasError: state => state.error ? true : false
   },
-  mutations: {},
-  actions: {},
+  mutations: mutations,
+  actions: actions,
   modules: {},
   plugins: [vuexLocal.plugin]
 });
+
