@@ -11,6 +11,11 @@
 
 推荐安装Chrome/ vue-devtool 去更好的理解state transfer
 
+后续计划：使用这个项目做些练手升级
+    1. PWA 的使用
+    2. Electron的使用
+    3. SSR
+
 
 ## Project setup
 ```
