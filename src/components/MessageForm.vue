@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'message-form',
@@ -42,6 +42,14 @@ export default {
     ...mapGetters([
       'hasError'
     ])
+  },
+  methods: {
+    ...mapActions([
+      'sendMessage'
+    ]),
+    onSubmit() {
+      this.sendMessage(this.message);
+    }
   }
 }
 </script>
