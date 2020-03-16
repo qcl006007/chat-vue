@@ -1,4 +1,4 @@
-# vue-chatkit
+# vue-chat
 
 使用Vue构建一个聊天应用
 
