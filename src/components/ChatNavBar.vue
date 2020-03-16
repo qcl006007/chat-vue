@@ -5,7 +5,7 @@
     </b-navbar-brand>
     <b-navbar-nav class="ml-auto">
       <b-nav-text>{{ user.name }} | </b-nav-text>
-      <b-nav-item href="#" active>Logout</b-nav-item>
+      <b-nav-item href="#" active @click="onLogout">Logout</b-nav-item>
     </b-navbar-nav>
   </b-navbar>
 </template>
@@ -22,15 +22,20 @@ export default {
     },
     methods: {
         ...mapMutations([
-            'setReconnect'
+            'setReconnect',
         ]),
         ...mapActions([
-            'login'
+            'login',
+            'logout'
         ]),
         unload() {
             if(this.user.username) { // User hasn't logged out
                 this.setReconnect(true);
             }
+        },
+        onLogout() {
+            this.logout();
+            this.$router.push('/');
         }
     },
     mounted() {

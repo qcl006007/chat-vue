@@ -56,12 +56,13 @@ export default {
       }
     },
 
-    async sendMessage({commit}, message) {
+    async sendMessage({commit, state}, message) {
       try {
         commit('setError', '');
         commit('setSending', true);
-        const messageId = await chatkit.sendMessage(message);
-        
+        let activeRoom = state.activeRoom;
+        const messageId = await chatkit.sendMessage(message, activeRoom);
+
         return messageId
       }
       catch (error) {
@@ -70,5 +71,10 @@ export default {
       finally {
         commit('setSending', false);
       }
+    },
+    async logout({ commit }) {
+      commit('reset');
+      chatkit.disconnectUser();
+      window.localStorage.clear();
     }
 }

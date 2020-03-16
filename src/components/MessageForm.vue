@@ -48,7 +48,10 @@ export default {
       'sendMessage'
     ]),
     onSubmit() {
-      this.sendMessage(this.message);
+      let messageId = this.sendMessage(this.message);
+      if (messageId) {
+        this.message = "";
+      }
     }
   }
 }

@@ -57,7 +57,7 @@ async function subscribeToRoom(roomId) {
   return activeRoom;
 }
 
-async function sendMessage(text) {
+async function sendMessage(text, activeRoom) {
   const messageId = await currentUser.sendMessage({
     text,
     roomId: activeRoom.id
@@ -65,8 +65,12 @@ async function sendMessage(text) {
   return messageId;
 }
 
+async function disconnectUser() {
+  currentUser.disconnect();
+}
 export default {
     connectUser,
     subscribeToRoom,
     sendMessage,
+    disconnectUser
 }
